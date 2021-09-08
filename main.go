@@ -7,22 +7,23 @@ import (
 
 func main() {
 	var aceValue int
+	var playerName string
 
 	fmt.Println("Welcome to BlackJack 5000!")
 
-	fmt.Println("What's the value of the Ace card?")
+	fmt.Println("Could you share your name?")
+	fmt.Scan(&playerName)
+
+	fmt.Println("What's the value of the Ace card? [1 or 11]")
 	fmt.Scan(&aceValue)
 
 	if ValidateAceValue(aceValue) {
-		fmt.Println("Let the games begin!")
+		fmt.Println(playerName + ", let the games begin!")
 
-		// create a new Deck
-		workingDec := NewDeck(aceValue)
+		// create a new game
+		game := NewGame(playerName, aceValue)
 
-		// Shuffle the deck
-		workingDec.Shuffle()
 
-		fmt.Println(workingDec.String())
 
 	} else {
 		fmt.Println("Sorry, you can't play!")
