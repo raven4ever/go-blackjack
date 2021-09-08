@@ -8,8 +8,9 @@ import (
 
 // struct to model a card
 type Card struct {
-	value int
-	suit  string
+	value  int
+	suit   string
+	points int
 }
 
 // struct to model a deck of cards
@@ -38,7 +39,11 @@ func NewDeck() Deck {
 	values := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
 	for _, suit := range suits {
 		for _, value := range values {
-			cards = append(cards, Card{value, suit})
+			if value > 10 {
+				cards = append(cards, Card{value, suit, 10})
+			} else {
+				cards = append(cards, Card{value, suit, value})
+			}
 		}
 	}
 	return Deck{cards}
